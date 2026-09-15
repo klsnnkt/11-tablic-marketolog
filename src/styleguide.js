@@ -18,11 +18,11 @@ export function renderStyleguide(activePath = "/styleguide") {
           <div class="style-row">
             <strong>Цвета</strong>
             <div class="swatches">
-              <div class="swatch" style="background:#f7f5fb">Фон</div>
-              <div class="swatch" style="background:#ffffff">Карточка</div>
-              <div class="swatch" style="background:#201a2b;color:white">Текст</div>
-              <div class="swatch" style="background:#16b978;color:white">Акцент</div>
-              <div class="swatch" style="background:#a12b3b;color:white">Ошибка</div>
+              <div class="swatch" style="background:#0b0b0e;color:white">Фон</div>
+              <div class="swatch" style="background:#17171d;color:white">Карточка</div>
+              <div class="swatch" style="background:#f5f5f7;color:#0b0b0e">Текст</div>
+              <div class="swatch" style="background:linear-gradient(135deg,#16b978,#0f9463);color:white">Акцент</div>
+              <div class="swatch" style="background:#ff5c74;color:white">Ошибка</div>
             </div>
           </div>
 

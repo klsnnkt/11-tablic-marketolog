@@ -30,12 +30,12 @@ function renderHome() {
     content: `
       <section class="lander-section">
         <div class="lander">
-          <div class="block block-dark hero-card">
+          <div class="block hero-card">
             <div class="hero-photo"><img src="${hero.photo}" alt="${escapeHtml(hero.photoAlt)}"></div>
             <div class="block-body">
               <h1>${escapeHtml(hero.title)}</h1>
               <p class="lead">${escapeHtml(hero.lead)}</p>
-              <div class="actions"><a class="button button--block" href="#request">${escapeHtml(project.cta)}</a></div>
+              <div class="actions"><a class="button button--block" href="#">${escapeHtml(project.cta)}</a></div>
             </div>
           </div>
         </div>
@@ -43,7 +43,7 @@ function renderHome() {
 
       <section class="lander-section">
         <div class="lander">
-          <div class="block block-light block-body">
+          <div class="block block-body">
             <h2>${escapeHtml(whatsInside.title)}</h2>
             <p class="lead">${escapeHtml(whatsInside.text)}</p>
 
@@ -70,7 +70,7 @@ function renderHome() {
             <p class="muted small table-note" id="table-note" hidden>${escapeHtml(whatsInside.note)}</p>
 
             <div class="actions">
-              <a class="button button--block" href="#request">${escapeHtml(project.cta)}</a>
+              <a class="button button--block" href="#">${escapeHtml(project.cta)}</a>
             </div>
           </div>
         </div>
@@ -78,7 +78,7 @@ function renderHome() {
 
       <section class="lander-section">
         <div class="lander">
-          <div class="block block-dark about-card">
+          <div class="block about-card">
             <div class="about-photo"><img src="${about.photo}" alt="${escapeHtml(about.photoAlt)}"></div>
             <div class="block-body">
               <h2>${escapeHtml(about.title)}</h2>
@@ -98,48 +98,20 @@ function renderHome() {
 
       <section class="lander-section">
         <div class="lander">
-          <div class="block block-light block-body">
+          <div class="block block-body">
             <h2>${escapeHtml(howItWorks.title)}</h2>
             <p class="lead">${escapeHtml(howItWorks.text)}</p>
           </div>
         </div>
       </section>
 
-      <section class="lander-section">
+      <section class="lander-section" style="padding-bottom:32px">
         <div class="lander">
-          <div class="block block-dark block-body" style="text-align:center">
+          <div class="block block-body" style="text-align:center">
             <h2>${escapeHtml(finalBlock.title)}</h2>
             <div class="actions" style="justify-content:center">
-              <a class="button button--block" href="#request">${escapeHtml(project.cta)}</a>
+              <a class="button button--block" href="#">${escapeHtml(project.cta)}</a>
             </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="request" class="lander-section" style="padding-bottom:32px">
-        <div class="lander">
-          <div class="block block-light block-body">
-            <p class="eyebrow">Главное действие</p>
-            <h2>${escapeHtml(project.form.title)}</h2>
-            <p class="lead">${escapeHtml(project.form.note)}</p>
-            <form id="lead-form" class="stack" style="margin-top:20px" novalidate>
-              <label>
-                Имя
-                <input name="name" autocomplete="name" maxlength="80" required>
-                <span class="help">Как к тебе обращаться.</span>
-              </label>
-              <label>
-                Контакт
-                <input name="contact" autocomplete="email" maxlength="120" required>
-                <span class="help">Почта или Telegram.</span>
-              </label>
-              <label>
-                Что сейчас не работает
-                <textarea name="problem" maxlength="1200" required></textarea>
-              </label>
-              <p id="form-error" class="field-error" hidden></p>
-              <button class="button button--block" type="submit">${escapeHtml(project.cta)}</button>
-            </form>
           </div>
         </div>
       </section>
@@ -150,41 +122,6 @@ function renderHome() {
     qs("#table-grid-more").hidden = false;
     qs("#table-note").hidden = false;
     event.currentTarget.hidden = true;
-  });
-
-  qs("#lead-form").addEventListener("submit", async (event) => {
-    event.preventDefault();
-    const form = event.currentTarget;
-    const data = new FormData(form);
-    const payload = {
-      name: String(data.get("name") || "").trim(),
-      contact: String(data.get("contact") || "").trim(),
-      problem: String(data.get("problem") || "").trim(),
-    };
-    const error = qs("#form-error");
-
-    if (payload.name.length < 2 || payload.contact.length < 3 || payload.problem.length < 10) {
-      error.textContent = "Заполни имя, контакт и опиши ситуацию хотя бы одним предложением.";
-      error.hidden = false;
-      return;
-    }
-
-    error.hidden = true;
-    const button = qs('button[type="submit"]', form);
-    button.disabled = true;
-    button.textContent = "Сохраняю…";
-
-    try {
-      await store.create("lead", payload, "new");
-      form.reset();
-      setNotice(store.mode === "local" ? project.form.successLocal : project.form.successRemote);
-    } catch (cause) {
-      error.textContent = cause instanceof Error ? cause.message : "Не удалось сохранить заявку";
-      error.hidden = false;
-    } finally {
-      button.disabled = false;
-      button.textContent = project.cta;
-    }
   });
 }
 
@@ -237,8 +174,7 @@ async function workspaceContent() {
           `).join("") : `
             <div class="empty">
               <h3>Заявок пока нет</h3>
-              <p>Открой главную и отправь первую тестовую форму.</p>
-              <a class="button" href="#/">Открыть форму</a>
+              <p>На лендинге пока нет формы — кнопки ведут на оплату в Telegram. Нажми «Вернуть демо-данные», чтобы увидеть пример записи.</p>
             </div>
           `}
         </div>
