@@ -20,7 +20,7 @@ const nav = (active) => [
 ];
 
 function renderHome() {
-  const { hero, whatsInside, about, howItWorks, final: finalBlock } = project;
+  const { hero, whatsInside, about, howItWorks, final: finalBlock, ctaUrl } = project;
   const visibleTables = whatsInside.tables.slice(0, whatsInside.visibleCount);
   const hiddenTables = whatsInside.tables.slice(whatsInside.visibleCount);
 
@@ -35,7 +35,7 @@ function renderHome() {
             <div class="block-body">
               <h1>${escapeHtml(hero.title)}</h1>
               <p class="lead">${escapeHtml(hero.lead)}</p>
-              <div class="actions"><a class="button button--block" href="#">${escapeHtml(project.cta)}</a></div>
+              <div class="actions"><a class="button button--block" href="${escapeHtml(ctaUrl)}">${escapeHtml(project.cta)}</a></div>
             </div>
           </div>
         </div>
@@ -70,7 +70,7 @@ function renderHome() {
             <p class="muted small table-note" id="table-note" hidden>${escapeHtml(whatsInside.note)}</p>
 
             <div class="actions">
-              <a class="button button--block" href="#">${escapeHtml(project.cta)}</a>
+              <a class="button button--block" href="${escapeHtml(ctaUrl)}">${escapeHtml(project.cta)}</a>
             </div>
           </div>
         </div>
@@ -110,7 +110,7 @@ function renderHome() {
           <div class="block block-body" style="text-align:center">
             <h2>${escapeHtml(finalBlock.title)}</h2>
             <div class="actions" style="justify-content:center">
-              <a class="button button--block" href="#">${escapeHtml(project.cta)}</a>
+              <a class="button button--block" href="${escapeHtml(ctaUrl)}">${escapeHtml(project.cta)}</a>
             </div>
           </div>
         </div>
