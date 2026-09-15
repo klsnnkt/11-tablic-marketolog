@@ -45,4 +45,14 @@ export const project = {
   final: {
     title: "Забирай и пользуйся (:",
   },
+
+  order: {
+    text: "Здесь будет оплата через Tribute. Пока это локальная репетиция шага — оставь контакт, чтобы проверить путь целиком.",
+    fieldLabel: "Telegram или почта",
+    placeholder: "@username или mail@example.com",
+    submitLabel: "Отправить заявку",
+    successTitle: "Заявка принята",
+    successText: "Как только подключим оплату, пришлём ссылку на неё сюда:",
+    errorText: "Укажи контакт — иначе не сможем прислать ссылку на оплату.",
+  },
 };

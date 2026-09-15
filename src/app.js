@@ -19,8 +19,71 @@ const nav = (active) => [
   { href: "#/workspace", label: "Заявки", active: active === "/workspace" },
 ];
 
-function renderHome() {
-  const { hero, whatsInside, about, howItWorks, final: finalBlock, ctaUrl } = project;
+function renderOrderBody({ mode = "empty", contact = "", error = "" } = {}) {
+  if (mode === "loading") {
+    return `<p class="muted">Проверяю статус заявки…</p>`;
+  }
+  if (mode === "success") {
+    return `
+      <div class="empty" style="border-style:solid;border-color:var(--success)">
+        <h3>${escapeHtml(project.order.successTitle)}</h3>
+        <p>${escapeHtml(project.order.successText)} <strong>${escapeHtml(contact)}</strong></p>
+      </div>
+    `;
+  }
+  return `
+    <form id="order-form" class="stack" novalidate>
+      <label>${escapeHtml(project.order.fieldLabel)}
+        <input name="contact" type="text" placeholder="${escapeHtml(project.order.placeholder)}" value="${escapeHtml(contact)}" autocomplete="off">
+      </label>
+      <button class="button button--block" type="submit">${escapeHtml(project.order.submitLabel)}</button>
+      <p class="field-error" ${error ? "" : "hidden"}>${escapeHtml(error)}</p>
+    </form>
+  `;
+}
+
+async function initOrderSection() {
+  const body = qs("#order-body");
+  if (!body) return;
+  let submitting = false;
+
+  async function renderState(state) {
+    body.innerHTML = renderOrderBody(state);
+    const form = qs("#order-form", body);
+    if (!form) return;
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      if (submitting) return;
+
+      const contact = String(new FormData(form).get("contact") || "").trim();
+      if (contact.length < 3) {
+        await renderState({ mode: "empty", contact, error: project.order.errorText });
+        return;
+      }
+
+      submitting = true;
+      qs('button[type="submit"]', form).disabled = true;
+      try {
+        const existing = await store.list("order_intent");
+        const record = existing[0] || await store.create("order_intent", { contact });
+        await renderState({ mode: "success", contact: record.payload.contact });
+        setNotice(project.order.successTitle, "success");
+      } catch (cause) {
+        await renderState({ mode: "empty", contact, error: cause instanceof Error ? cause.message : "Не удалось сохранить заявку" });
+        setNotice("Не удалось сохранить заявку", "error");
+      } finally {
+        submitting = false;
+      }
+    });
+  }
+
+  await renderState({ mode: "loading" });
+  const existing = await store.list("order_intent");
+  await renderState(existing.length ? { mode: "success", contact: existing[0].payload.contact } : { mode: "empty" });
+}
+
+async function renderHome() {
+  const { hero, whatsInside, about, howItWorks, final: finalBlock } = project;
   const visibleTables = whatsInside.tables.slice(0, whatsInside.visibleCount);
   const hiddenTables = whatsInside.tables.slice(whatsInside.visibleCount);
 
@@ -35,7 +98,7 @@ function renderHome() {
             <div class="block-body">
               <h1>${escapeHtml(hero.title)}</h1>
               <p class="lead">${escapeHtml(hero.lead)}</p>
-              <div class="actions"><a class="button button--block" href="${escapeHtml(ctaUrl)}">${escapeHtml(project.cta)}</a></div>
+              <div class="actions"><a class="button button--block" href="#order">${escapeHtml(project.cta)}</a></div>
             </div>
           </div>
         </div>
@@ -70,7 +133,7 @@ function renderHome() {
             <p class="muted small table-note" id="table-note" hidden>${escapeHtml(whatsInside.note)}</p>
 
             <div class="actions">
-              <a class="button button--block" href="${escapeHtml(ctaUrl)}">${escapeHtml(project.cta)}</a>
+              <a class="button button--block" href="#order">${escapeHtml(project.cta)}</a>
             </div>
           </div>
         </div>
@@ -105,13 +168,12 @@ function renderHome() {
         </div>
       </section>
 
-      <section class="lander-section" style="padding-bottom:32px">
+      <section class="lander-section" style="padding-bottom:32px" id="order">
         <div class="lander">
           <div class="block block-body" style="text-align:center">
             <h2>${escapeHtml(finalBlock.title)}</h2>
-            <div class="actions" style="justify-content:center">
-              <a class="button button--block" href="${escapeHtml(ctaUrl)}">${escapeHtml(project.cta)}</a>
-            </div>
+            <p class="lead" style="margin-left:auto;margin-right:auto">${escapeHtml(project.order.text)}</p>
+            <div id="order-body"></div>
           </div>
         </div>
       </section>
@@ -123,6 +185,8 @@ function renderHome() {
     qs("#table-note").hidden = false;
     event.currentTarget.hidden = true;
   });
+
+  await initOrderSection();
 }
 
 async function workspaceContent() {
