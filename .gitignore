@@ -1,0 +1,11 @@
+.DS_Store
+Thumbs.db
+dist/
+node_modules/
+.env
+.env.*
+!.env.example
+*.log
+
+# Исходники дизайна (фото, шрифты, ТЗ) — не публикуются, нужное скопировано в public/
+Референсы по лендингу/
