@@ -99,7 +99,7 @@ function initHeroSwipe() {
 }
 
 async function renderHome() {
-  const { hero, whatsInside, about, howItWorks, final: finalBlock } = project;
+  const { hero, whatsInside, about, howItWorks, final: finalBlock, closingCat } = project;
   const visibleTables = whatsInside.tables.slice(0, whatsInside.visibleCount);
   const hiddenTables = whatsInside.tables.slice(whatsInside.visibleCount);
 
@@ -239,6 +239,14 @@ async function renderHome() {
             <div class="actions">
               <a class="button button--block" href="${escapeHtml(project.ctaUrl)}">${escapeHtml(project.cta)}</a>
             </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="lander-section">
+        <div class="lander">
+          <div class="block">
+            <img src="${closingCat.image}" alt="${escapeHtml(closingCat.imageAlt)}">
           </div>
         </div>
       </section>
