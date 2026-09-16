@@ -72,12 +72,16 @@ function initHeroSwipe() {
     setPosition(Math.min(maxLeft, Math.max(0, startLeft + delta)));
   });
 
+  let suppressNextClick = false;
+
   function onRelease() {
     if (!dragging) return;
     dragging = false;
     thumb.classList.remove("is-dragging");
+    suppressNextClick = true;
+    window.setTimeout(() => { suppressNextClick = false; }, 0);
     const left = thumb.offsetLeft - PAD;
-    if (moved >= 6 && left >= maxLeft * 0.82) {
+    if (moved < 6 || left >= maxLeft * 0.82) {
       complete();
     } else {
       reset();
@@ -92,6 +96,13 @@ function initHeroSwipe() {
       event.preventDefault();
       complete();
     }
+  });
+
+  // Простой клик/тап по пилюле (без протягивания) тоже подтверждает — часть
+  // пользователей не пытается тащить ползунок, а просто нажимает как на кнопку.
+  root.addEventListener("click", () => {
+    if (suppressNextClick || done) return;
+    complete();
   });
 
   window.addEventListener("resize", () => { if (!done) metrics(); });
