@@ -257,16 +257,17 @@ async function renderHome() {
         </div>
       </section>
 
-      <section class="lander-section">
+      <section class="lander-section lander-section--smoke">
         <div class="lander">
           <div class="block about-card">
             <div class="about-photo"><img src="${about.photo}" alt="${escapeHtml(about.photoAlt)}"></div>
             <div class="block-body">
+              <p class="cell-tag-row"><span class="cell-tag">C1</span><span class="cell-tag-caption">автор этой системы</span></p>
               <h2>${escapeHtml(about.title)}</h2>
               <div>
                 ${about.points.map((point, index) => `
                   <div class="feature-row">
-                    <span class="feature-index">0${index + 1}</span>
+                    <span class="cell-tag">C${index + 2}</span>
                     <p class="feature-text">${escapeHtml(point)}</p>
                   </div>
                 `).join("")}

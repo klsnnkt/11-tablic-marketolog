@@ -392,10 +392,10 @@ textarea { min-height: 120px; resize: vertical; }
 .sheet-tab-name { font-size: 13px; color: var(--muted); }
 
 .about-card .about-photo { padding: 22px 22px 0; }
-.about-card .about-photo img { width: 100%; border-radius: var(--radius-lg); display: block; }
+.about-card .about-photo img { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; object-position: center 62%; border-radius: var(--radius-lg); display: block; }
 .feature-row { display: flex; gap: 14px; align-items: flex-start; padding: 14px 0; border-top: 1px solid var(--line); }
 .feature-row:first-child { border-top: 0; }
-.feature-index { font-family: var(--font-heading); font-weight: 700; font-size: 13px; color: var(--accent); min-width: 26px; padding-top: 2px; }
+.feature-row .cell-tag { margin-top: 2px; flex: none; }
 .feature-text { line-height: 1.55; margin: 0; }
 
 .style-row { display: grid; grid-template-columns: 170px 1fr; gap: 24px; padding: 24px 0; border-bottom: 1px solid var(--line); }
