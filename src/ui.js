@@ -40,7 +40,7 @@ export function setNotice(message, type = "success") {
   }, 4500);
 }
 
-export function renderShell({ title, nav, content, header = true }) {
+export function renderShell({ title, nav, content, header = true, footer = true }) {
   document.title = title;
   const root = qs("#app");
   root.innerHTML = `
@@ -54,10 +54,12 @@ export function renderShell({ title, nav, content, header = true }) {
     ` : ""}
     <main id="main">${content}</main>
     <div id="global-notice" class="notice" hidden role="status" aria-live="polite"></div>
+    ${footer ? `
     <footer class="site-footer">
       <span>${escapeHtml(project.name)}</span>
       <a href="#/styleguide">Стиль проекта</a>
     </footer>
+    ` : ""}
   `;
 }
 

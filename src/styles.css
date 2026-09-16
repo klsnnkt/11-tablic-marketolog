@@ -124,6 +124,12 @@ h3 { font-size: 20px; margin-bottom: 10px; }
 }
 .block { border-radius: var(--radius-xl); overflow: hidden; background: var(--surface); border: 1px solid var(--line); box-shadow: var(--shadow); }
 .block-body { padding: 26px 22px 30px; }
+.block--glow {
+  background:
+    radial-gradient(75% 65% at 18% -10%, rgba(34, 211, 145, .16), transparent 62%),
+    radial-gradient(65% 60% at 100% 115%, rgba(15, 148, 99, .16), transparent 62%),
+    var(--surface);
+}
 
 .hero-card .hero-photo img { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; display: block; }
 .hero-card h1 { font-size: clamp(23px, 6.2vw, 34px); margin-bottom: 10px; }
@@ -301,6 +307,10 @@ h3 { font-size: 20px; margin-bottom: 10px; }
 .inline { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
 .split { display: flex; justify-content: space-between; align-items: flex-start; gap: 24px; }
 .metric { font-size: 36px; font-weight: 850; letter-spacing: -.04em; }
+
+.price-line { display: flex; flex-direction: column; align-items: flex-start; gap: 4px; margin: 6px 0 18px; }
+.price-value { font-family: var(--font-heading); font-weight: 800; font-size: clamp(30px, 7vw, 40px); letter-spacing: -.02em; }
+.price-note { color: var(--accent); font-weight: 700; font-size: 14px; }
 
 label { display: grid; gap: 7px; font-weight: 700; }
 input, textarea, select {
