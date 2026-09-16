@@ -170,7 +170,7 @@ async function renderHome() {
     title: `${project.name} — ${hero.title}`,
     header: false,
     content: `
-      <section class="lander-section">
+      <section class="lander-section lander-section--smoke">
         <div class="lander">
           <div class="block hero-card">
             <div class="hero-chrome">
@@ -207,26 +207,41 @@ async function renderHome() {
         </div>
       </section>
 
-      <section class="lander-section">
+      <section class="lander-section lander-section--smoke">
         <div class="lander">
           <div class="block block-body">
+            <p class="cell-tag-row"><span class="cell-tag">B1</span><span class="cell-tag-caption">что внутри воркбука</span></p>
             <h2>${escapeHtml(whatsInside.title)}</h2>
             <p class="lead">${escapeHtml(whatsInside.text)}</p>
 
             <div class="table-stack" id="table-grid">
-              ${visibleTables.map((table) => `
+              ${visibleTables.map((table, index) => `
                 <figure class="table-card">
                   <img src="${table.image}" alt="Таблица «${escapeHtml(table.title)}»">
-                  <figcaption>${escapeHtml(table.title)}</figcaption>
+                  <figcaption class="table-card-foot">
+                    <span class="cell-tag">A${index + 2}</span>
+                    <span class="table-card-title">${escapeHtml(table.title)}</span>
+                  </figcaption>
                 </figure>
               `).join("")}
             </div>
             <div class="table-stack" id="table-grid-more" hidden>
-              ${hiddenTables.map((table) => `
+              ${hiddenTables.map((table, index) => `
                 <figure class="table-card">
                   <img src="${table.image}" alt="Таблица «${escapeHtml(table.title)}»">
-                  <figcaption>${escapeHtml(table.title)}</figcaption>
+                  <figcaption class="table-card-foot">
+                    <span class="cell-tag">A${visibleTables.length + index + 2}</span>
+                    <span class="table-card-title">${escapeHtml(table.title)}</span>
+                  </figcaption>
                 </figure>
+              `).join("")}
+            </div>
+            <div class="sheet-tabs" id="sheet-tabs" hidden>
+              ${whatsInside.moreTitles.map((title, index) => `
+                <span class="sheet-tab">
+                  <span class="sheet-tab-ref">A${visibleTables.length + hiddenTables.length + index + 2}</span>
+                  <span class="sheet-tab-name">${escapeHtml(title)}</span>
+                </span>
               `).join("")}
             </div>
 
@@ -285,6 +300,7 @@ async function renderHome() {
 
   qs("#expand-tables")?.addEventListener("click", (event) => {
     qs("#table-grid-more").hidden = false;
+    qs("#sheet-tabs").hidden = false;
     qs("#table-note").hidden = false;
     event.currentTarget.hidden = true;
   });
