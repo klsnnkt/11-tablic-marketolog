@@ -40,16 +40,18 @@ export function setNotice(message, type = "success") {
   }, 4500);
 }
 
-export function renderShell({ title, nav, content }) {
+export function renderShell({ title, nav, content, header = true }) {
   document.title = title;
   const root = qs("#app");
   root.innerHTML = `
+    ${header ? `
     <header class="site-header">
       <a class="brand" href="#/">${escapeHtml(project.name)}</a>
       <nav class="nav" aria-label="Главная навигация">
         ${nav.map((item) => `<a href="${item.href}" ${item.active ? 'aria-current="page"' : ""}>${escapeHtml(item.label)}</a>`).join("")}
       </nav>
     </header>
+    ` : ""}
     <main id="main">${content}</main>
     <div id="global-notice" class="notice" hidden role="status" aria-live="polite"></div>
     <footer class="site-footer">

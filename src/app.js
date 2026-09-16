@@ -82,6 +82,85 @@ async function initOrderSection() {
   await renderState(existing.length ? { mode: "success", contact: existing[0].payload.contact } : { mode: "empty" });
 }
 
+function initHeroSwipe() {
+  const root = qs("#hero-swipe");
+  const thumb = qs("#hero-swipe-thumb");
+  const fill = qs("#hero-swipe-fill");
+  if (!root || !thumb || !fill) return;
+
+  const PAD = 3;
+  let dragging = false;
+  let startX = 0;
+  let startLeft = 0;
+  let moved = 0;
+  let maxLeft = 0;
+  let done = false;
+
+  function metrics() {
+    maxLeft = Math.max(0, root.clientWidth - thumb.offsetWidth - PAD * 2);
+  }
+
+  function setPosition(left) {
+    thumb.style.left = `${left + PAD}px`;
+    fill.style.width = `${left + thumb.offsetWidth + PAD}px`;
+  }
+
+  function complete() {
+    if (done) return;
+    done = true;
+    root.classList.add("is-complete");
+    setPosition(maxLeft);
+    window.setTimeout(() => { location.hash = "order"; }, 220);
+  }
+
+  function reset() {
+    setPosition(0);
+  }
+
+  thumb.addEventListener("pointerdown", (event) => {
+    if (done) return;
+    metrics();
+    dragging = true;
+    moved = 0;
+    startX = event.clientX;
+    startLeft = thumb.offsetLeft - PAD;
+    thumb.classList.add("is-dragging");
+    thumb.setPointerCapture(event.pointerId);
+  });
+
+  thumb.addEventListener("pointermove", (event) => {
+    if (!dragging) return;
+    const delta = event.clientX - startX;
+    moved = Math.abs(delta);
+    setPosition(Math.min(maxLeft, Math.max(0, startLeft + delta)));
+  });
+
+  function onRelease() {
+    if (!dragging) return;
+    dragging = false;
+    thumb.classList.remove("is-dragging");
+    const left = thumb.offsetLeft - PAD;
+    if (moved >= 6 && left >= maxLeft * 0.82) {
+      complete();
+    } else {
+      reset();
+    }
+  }
+
+  thumb.addEventListener("pointerup", onRelease);
+  thumb.addEventListener("pointercancel", onRelease);
+
+  thumb.addEventListener("keydown", (event) => {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      complete();
+    }
+  });
+
+  window.addEventListener("resize", () => { if (!done) metrics(); });
+  metrics();
+}
+
 async function renderHome() {
   const { hero, whatsInside, about, howItWorks, final: finalBlock } = project;
   const visibleTables = whatsInside.tables.slice(0, whatsInside.visibleCount);
@@ -89,16 +168,40 @@ async function renderHome() {
 
   renderShell({
     title: `${project.name} — ${hero.title}`,
-    nav: [...nav("/"), { href: "#/styleguide", label: "Стиль", active: false }],
+    header: false,
     content: `
       <section class="lander-section">
         <div class="lander">
           <div class="block hero-card">
+            <div class="hero-chrome">
+              <div class="hero-chrome-dots"><span></span><span></span><span></span></div>
+              <span class="hero-chrome-label">Google Таблицы — Лист1</span>
+            </div>
             <div class="hero-photo"><img src="${hero.photo}" alt="${escapeHtml(hero.photoAlt)}"></div>
             <div class="block-body">
+              <p class="cell-tag-row"><span class="cell-tag">A1</span><span class="cell-tag-caption">первая ячейка твоей системы</span></p>
               <h1>${escapeHtml(hero.title)}</h1>
               <p class="lead">${escapeHtml(hero.lead)}</p>
-              <div class="actions"><a class="button button--block" href="#order">${escapeHtml(project.cta)}</a></div>
+              <div class="actions">
+                <div class="swipe-cta" id="hero-swipe">
+                  <div class="swipe-cta-fill" id="hero-swipe-fill"></div>
+                  <span class="swipe-cta-label">${escapeHtml(project.cta)}</span>
+                  <button type="button" class="swipe-cta-thumb" id="hero-swipe-thumb" aria-label="${escapeHtml(project.cta)} — потяни вправо или нажми Enter">
+                    <span class="swipe-cta-thumb-glow"></span>
+                    <span class="swipe-cta-thumb-face">
+                      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 3a7 7 0 0 0-7 7v1.5"/>
+                        <path d="M12 3a7 7 0 0 1 7 7v4"/>
+                        <path d="M7 17.5A9 9 0 0 1 5 11"/>
+                        <path d="M9 8.5a3 3 0 0 1 6 0v5.5"/>
+                        <path d="M12 21a9 9 0 0 1-3.5-4.5"/>
+                        <path d="M15.5 19a9 9 0 0 0 2.5-6.5V11"/>
+                        <path d="M9 8.5v3a3 3 0 0 0 3 3 3 3 0 0 0 1-.18"/>
+                      </svg>
+                    </span>
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -186,6 +289,7 @@ async function renderHome() {
     event.currentTarget.hidden = true;
   });
 
+  initHeroSwipe();
   await initOrderSection();
 }
 
