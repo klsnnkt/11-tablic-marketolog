@@ -409,6 +409,10 @@ textarea { min-height: 120px; resize: vertical; }
 .feature-row .cell-tag { margin-top: 2px; flex: none; }
 .feature-text { line-height: 1.55; margin: 0; }
 
+.legal-footer { padding: 4px 4px 32px; }
+.legal-footer p { margin: 0 0 4px; font-size: 13px; line-height: 1.5; color: var(--muted); }
+.legal-footer p:last-child { margin-bottom: 0; }
+
 .style-row { display: grid; grid-template-columns: 170px 1fr; gap: 24px; padding: 24px 0; border-bottom: 1px solid var(--line); }
 .swatches { display: flex; flex-wrap: wrap; gap: 12px; }
 .swatch { width: 88px; height: 72px; border-radius: 12px; border: 1px solid var(--line); padding: 8px; display: flex; align-items: flex-end; font-size: 11px; }

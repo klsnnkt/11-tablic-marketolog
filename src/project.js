@@ -60,4 +60,11 @@ export const project = {
     image: "./public/images/closing-cat.jpg",
     imageAlt: "Кот нажимает на зелёную кнопку «забрать»",
   },
+
+  legal: {
+    entity: "ИП Колесник Никита Павлович",
+    inn: "ИНН: 421415354002",
+    ogrnip: "ОГРНИП: 326547600121061",
+    paymentMethod: "Способ оплаты МИР",
+  },
 };

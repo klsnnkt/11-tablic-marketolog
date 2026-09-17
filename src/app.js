@@ -110,7 +110,7 @@ function initHeroSwipe() {
 }
 
 async function renderHome() {
-  const { hero, whatsInside, about, howItWorks, final: finalBlock, closingCat } = project;
+  const { hero, whatsInside, about, howItWorks, final: finalBlock, closingCat, legal } = project;
   const visibleTables = whatsInside.tables.slice(0, whatsInside.visibleCount);
   const hiddenTables = whatsInside.tables.slice(whatsInside.visibleCount);
 
@@ -258,6 +258,17 @@ async function renderHome() {
         <div class="lander">
           <div class="block">
             <img src="${closingCat.image}" alt="${escapeHtml(closingCat.imageAlt)}">
+          </div>
+        </div>
+      </section>
+
+      <section class="lander-section">
+        <div class="lander">
+          <div class="legal-footer">
+            <p>${escapeHtml(legal.entity)}</p>
+            <p>${escapeHtml(legal.inn)}</p>
+            <p>${escapeHtml(legal.ogrnip)}</p>
+            <p>${escapeHtml(legal.paymentMethod)}</p>
           </div>
         </div>
       </section>
