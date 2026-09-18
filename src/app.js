@@ -121,7 +121,7 @@ async function renderHome() {
     content: `
       <section class="lander-section lander-section--smoke">
         <div class="lander">
-          <div class="block hero-card">
+          <div class="block hero-card block--glow-1">
             <div class="hero-chrome">
               <div class="hero-chrome-dots"><span></span><span></span><span></span></div>
               <span class="hero-chrome-label">Google Таблицы — Лист1</span>
@@ -158,7 +158,7 @@ async function renderHome() {
 
       <section class="lander-section lander-section--smoke">
         <div class="lander">
-          <div class="block block-body">
+          <div class="block block-body block--glow-2">
             <p class="cell-tag-row"><span class="cell-tag">B1</span><span class="cell-tag-caption">что внутри воркбука</span></p>
             <h2>${escapeHtml(whatsInside.title)}</h2>
             <p class="lead">${escapeHtml(whatsInside.text)}</p>
@@ -208,7 +208,7 @@ async function renderHome() {
 
       <section class="lander-section lander-section--smoke">
         <div class="lander">
-          <div class="block about-card">
+          <div class="block about-card block--glow-3">
             <div class="about-photo"><img src="${about.photo}" alt="${escapeHtml(about.photoAlt)}"></div>
             <div class="block-body">
               <p class="cell-tag-row"><span class="cell-tag">C1</span><span class="cell-tag-caption">автор этой системы</span></p>
