@@ -405,7 +405,7 @@ textarea { min-height: 120px; resize: vertical; }
   margin: 0;
   overflow: hidden;
 }
-.table-card img { border-radius: 12px; filter: blur(2px) saturate(1.05); transform: scale(1.02); user-select: none; }
+.table-card img { width: 100%; aspect-ratio: 1272 / 605; object-fit: cover; display: block; border-radius: 12px; filter: blur(2px) saturate(1.05); transform: scale(1.02); user-select: none; }
 .table-card-foot { display: flex; align-items: center; gap: 8px; padding: 12px 6px 2px; }
 .table-card-title { font-weight: 700; font-size: 15px; min-width: 0; overflow-wrap: anywhere; }
 .table-note { margin-top: 6px; }
