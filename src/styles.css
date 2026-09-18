@@ -101,7 +101,7 @@ h3 { font-size: 20px; margin-bottom: 10px; }
 .lander { width: min(480px, calc(100% - 32px)); margin-inline: auto; }
 .lander-section { padding: 8px 0; }
 .lander-section:first-child { padding-top: 24px; }
-.lander-section--smoke { position: relative; isolation: isolate; }
+.lander-section--smoke { position: relative; }
 .lander-section--smoke::before,
 .lander-section--smoke::after {
   content: "";
