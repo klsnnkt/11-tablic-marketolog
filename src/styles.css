@@ -51,7 +51,7 @@
 }
 
 * { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; background: var(--bg); overscroll-behavior-x: none; }
 body { margin: 0; background: var(--bg); color: var(--text); line-height: 1.55; overflow-x: hidden; }
 button, input, textarea, select { font: inherit; }
 button, a { -webkit-tap-highlight-color: transparent; }
