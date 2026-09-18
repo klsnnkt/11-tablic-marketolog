@@ -106,15 +106,15 @@ h3 { font-size: 20px; margin-bottom: 10px; }
 .lander-section--smoke::after {
   content: "";
   position: absolute;
-  inset: -48px -16px;
+  inset: -160px -16px;
   z-index: -1;
   pointer-events: none;
 }
 .lander-section--smoke::before {
   background:
-    radial-gradient(55% 45% at 18% 8%, rgba(34, 211, 145, .16), transparent 70%),
-    radial-gradient(50% 42% at 88% 26%, rgba(15, 148, 99, .14), transparent 70%),
-    radial-gradient(48% 40% at 46% 96%, rgba(22, 185, 120, .12), transparent 70%);
+    radial-gradient(55% 210px at left 18% top 175px, rgba(34, 211, 145, .16), transparent 70%),
+    radial-gradient(50% 190px at left 88% top 165px, rgba(15, 148, 99, .14), transparent 70%),
+    radial-gradient(48% 190px at left 46% bottom 165px, rgba(22, 185, 120, .12), transparent 70%);
   filter: blur(44px);
 }
 .lander-section--smoke::after {
