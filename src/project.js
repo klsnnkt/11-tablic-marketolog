@@ -34,7 +34,7 @@ export const project = {
 
   about: {
     title: "Коротко обо мне",
-    photo: "./public/images/about.png",
+    photo: "./public/images/about.webp",
     photoAlt: "Автор набора работает удалённо",
     points: [
       "Я в контент-маркетинге с 2019 года: поработал с 50+ ниш, в половине из которых был РОМ-ом и управленцем в SMM-департаментах.",
