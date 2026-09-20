@@ -47,7 +47,7 @@ function initHeroSwipe() {
     done = true;
     root.classList.add("is-complete");
     setPosition(maxLeft);
-    window.setTimeout(() => { location.hash = "order"; }, 220);
+    window.setTimeout(() => { window.location.href = project.ctaUrl; }, 220);
   }
 
   function reset() {
@@ -200,7 +200,7 @@ async function renderHome() {
             <p class="muted small table-note" id="table-note" hidden>${escapeHtml(whatsInside.note)}</p>
 
             <div class="actions">
-              <a class="button button--block" href="#order">${escapeHtml(project.cta)}</a>
+              <a class="button button--block" href="${escapeHtml(project.ctaUrl)}">${escapeHtml(project.cta)}</a>
             </div>
           </div>
         </div>
