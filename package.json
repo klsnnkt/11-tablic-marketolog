@@ -12,9 +12,9 @@
   "engines": {
     "node": ">=22"
   },
-  "name": "airc-vibe-page",
-  "description": "Dependency-free AIRC starter for a landing page, lead form, or visual story.",
+  "name": "11-tablic-marketolog",
+  "description": "Лендинг «11 таблиц для маркетолога» — доступ к закрытому Telegram-каналу с авторскими Google-таблицами.",
   "license": "MIT",
-  "repository": "https://github.com/FocusSam/airc-vibe-page",
-  "homepage": "https://focussam.github.io/airc-vibe-page/"
+  "repository": "https://github.com/klsnnkt/11-tablic-marketolog",
+  "homepage": "https://klsnnkt.github.io/11-tablic-marketolog/"
 }
