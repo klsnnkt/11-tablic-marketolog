@@ -406,8 +406,10 @@ async function renderWorkspace() {
 
 async function render() {
   const current = route();
-  if (current === "/workspace") return renderWorkspace();
-  if (current === "/styleguide") return renderStyleguide();
+  if (current !== "/") {
+    location.hash = "/";
+    return;
+  }
   return renderHome();
 }
 
