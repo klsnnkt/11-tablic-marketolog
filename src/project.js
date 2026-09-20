@@ -1,7 +1,7 @@
 export const project = {
   name: "11 таблиц для маркетолога",
   cta: "Забрать набор",
-  ctaUrl: "https://tochkaplace.com/ia/1189ff73-20e4-4d73-b885-0443fd393b3c",
+  ctaUrl: "https://tochkaplace.com/ia/439470c4-53c6-4a4d-a527-11a023eaac63", // ВРЕМЕННО: тестовая ссылка на 15₽, вернуть боевую после теста — см. TASKS.md
 
   hero: {
     title: "11 готовых Google-таблиц для РОМ-ов и контент-маркетологов",
