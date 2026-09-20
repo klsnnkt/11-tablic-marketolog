@@ -406,7 +406,7 @@ async function renderWorkspace() {
 
 async function render() {
   const current = route();
-  if (current !== "/") {
+  if (current === "/workspace" || current === "/styleguide") {
     location.hash = "/";
     return;
   }
