@@ -266,7 +266,14 @@ async function renderHome() {
               <span class="price-value">${escapeHtml(finalBlock.price)}</span>
               <span class="price-note">${escapeHtml(finalBlock.priceNote)}</span>
             </p>
-            <p class="lead">${escapeHtml(finalBlock.text)}</p>
+            <div class="step-path">
+              ${finalBlock.steps.map((step, index) => `
+                <div class="step-row">
+                  <span class="step-marker"><span class="cell-tag">F${index + 2}</span></span>
+                  <p class="step-text">${escapeHtml(step)}</p>
+                </div>
+              `).join("")}
+            </div>
             <div class="actions">
               <a class="button button--block" href="${escapeHtml(project.ctaUrl)}">${escapeHtml(project.cta)}</a>
             </div>

@@ -460,6 +460,27 @@ textarea { min-height: 120px; resize: vertical; }
 .feature-row .cell-tag { margin-top: 2px; flex: none; }
 .feature-text { line-height: 1.55; margin: 0; }
 
+/* Путь после оплаты в блоке «Цена и доступ» (F1) — вертикальный степпер:
+   тег ячейки на каждый шаг (F2…F6, продолжает нумерацию блока, как и
+   .feature-row в блоке «Обо мне»), соединённые тонкой линией — читается
+   как карта шагов, а не абзац текста. */
+.step-path { position: relative; margin: 18px 0 6px; }
+.step-path::before {
+  content: "";
+  position: absolute;
+  top: 14px;
+  bottom: 14px;
+  left: 17px;
+  width: 2px;
+  background: var(--line);
+}
+.step-row { position: relative; display: flex; gap: 14px; align-items: flex-start; padding: 10px 0; }
+.step-row:first-child { padding-top: 0; }
+.step-row:last-child { padding-bottom: 0; }
+.step-marker { position: relative; flex: none; width: 34px; display: flex; justify-content: center; }
+.step-marker .cell-tag { position: relative; background: var(--surface); }
+.step-text { margin: 0; padding-top: 3px; line-height: 1.5; }
+
 .legal-footer { padding: 4px 4px 32px; }
 .legal-footer p { margin: 0 0 4px; font-size: 13px; line-height: 1.5; color: var(--muted); }
 .legal-footer p:last-child { margin-bottom: 0; }
