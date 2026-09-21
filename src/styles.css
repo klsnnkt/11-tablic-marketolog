@@ -109,6 +109,10 @@ h1 { font-size: clamp(30px, 8vw, 44px); margin-bottom: 16px; }
 h2 { font-size: clamp(24px, 6vw, 32px); margin-bottom: 14px; }
 h3 { font-size: 20px; margin-bottom: 10px; }
 .lead { font-size: 17px; color: var(--muted); max-width: 720px; }
+/* Финальный CTA перед котиком — та же геометрия, что у .lead, но обычный
+   (не приглушённый) цвет текста: здесь это главное сообщение блока, а не
+   второстепенное описание под заголовком. */
+.closing-cta-text { font-size: 17px; line-height: 1.55; color: var(--text); max-width: 720px; margin: 0 0 12px; }
 .muted { color: var(--muted); }
 .small { font-size: 14px; }
 .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 24px; }

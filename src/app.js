@@ -117,7 +117,7 @@ function initHeroSwipe() {
 }
 
 async function renderHome() {
-  const { hero, whatsInside, about, benefit, howItWorks, final: finalBlock, closingCat, legal } = project;
+  const { hero, whatsInside, about, benefit, howItWorks, final: finalBlock, closingCta, closingCat, legal } = project;
   const visibleTables = whatsInside.tables.slice(0, whatsInside.visibleCount);
   const hiddenTables = whatsInside.tables.slice(whatsInside.visibleCount);
 
@@ -284,6 +284,18 @@ async function renderHome() {
                 </div>
               `).join("")}
             </div>
+            <div class="actions">
+              <a class="button button--block" href="${escapeHtml(project.ctaUrl)}">${escapeHtml(project.cta)}</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="lander-section">
+        <div class="lander">
+          <div class="block block-body block--glow">
+            <p class="closing-cta-text">${closingCta.textHtml}</p>
+            <p class="muted small">${escapeHtml(closingCta.note)}</p>
             <div class="actions">
               <a class="button button--block" href="${escapeHtml(project.ctaUrl)}">${escapeHtml(project.cta)}</a>
             </div>
