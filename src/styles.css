@@ -168,6 +168,18 @@ h3 { font-size: 20px; margin-bottom: 10px; }
     radial-gradient(75% 60% at 96% 100%, rgba(15, 148, 99, .17), transparent 62%),
     var(--surface);
 }
+/* Блок «Вот в чём твоя выгода» (D1) — выделен как «диапазон ячеек» в Google
+   Таблицах: акцентная рамка, плюс более плотное свечение, чем у
+   .block--glow-1/-2/-3. Свечение — строго внутри границ блока (background,
+   без отрицательных inset), чтобы не повторить прошлый баг с горизонтальным
+   скроллом от смок-псевдоэлементов вне блока. */
+.benefit-card {
+  border: 2px solid var(--accent);
+  background:
+    radial-gradient(85% 70% at 50% 12%, rgba(34, 211, 145, .24), transparent 60%),
+    radial-gradient(70% 60% at 12% 105%, rgba(15, 148, 99, .2), transparent 62%),
+    var(--surface);
+}
 
 .hero-card .hero-photo img { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; display: block; }
 .hero-card h1 { font-size: clamp(23px, 6.2vw, 34px); margin-bottom: 10px; }

@@ -117,7 +117,7 @@ function initHeroSwipe() {
 }
 
 async function renderHome() {
-  const { hero, whatsInside, about, howItWorks, final: finalBlock, closingCat, legal } = project;
+  const { hero, whatsInside, about, benefit, howItWorks, final: finalBlock, closingCat, legal } = project;
   const visibleTables = whatsInside.tables.slice(0, whatsInside.visibleCount);
   const hiddenTables = whatsInside.tables.slice(whatsInside.visibleCount);
 
@@ -236,8 +236,21 @@ async function renderHome() {
 
       <section class="lander-section">
         <div class="lander">
+          <div class="block block-body benefit-card">
+            <p class="cell-tag-row"><span class="cell-tag">D1</span><span class="cell-tag-caption">твоя выгода</span></p>
+            <h2>${escapeHtml(benefit.title)}</h2>
+            <p class="lead">${benefit.textHtml}</p>
+            <div class="actions">
+              <a class="button button--block" href="${escapeHtml(project.ctaUrl)}">${escapeHtml(project.cta)}</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="lander-section">
+        <div class="lander">
           <div class="block block-body block--glow">
-            <p class="cell-tag-row"><span class="cell-tag">D1</span><span class="cell-tag-caption">механика доступа</span></p>
+            <p class="cell-tag-row"><span class="cell-tag">E1</span><span class="cell-tag-caption">механика доступа</span></p>
             <h2>${escapeHtml(howItWorks.title)}</h2>
             <p class="lead">${escapeHtml(howItWorks.text)}</p>
           </div>
@@ -247,7 +260,7 @@ async function renderHome() {
       <section class="lander-section" style="padding-bottom:32px" id="order">
         <div class="lander">
           <div class="block block-body block--glow">
-            <p class="cell-tag-row"><span class="cell-tag">E1</span><span class="cell-tag-caption">последний шаг</span></p>
+            <p class="cell-tag-row"><span class="cell-tag">F1</span><span class="cell-tag-caption">последний шаг</span></p>
             <h2>${escapeHtml(finalBlock.title)}</h2>
             <p class="price-line">
               <span class="price-value">${escapeHtml(finalBlock.price)}</span>
