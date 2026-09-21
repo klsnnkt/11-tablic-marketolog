@@ -32,13 +32,21 @@ function initHeroSwipe() {
   let moved = 0;
   let maxLeft = 0;
   let done = false;
+  // Текущая позиция ползунка (в px от начала пути) — трекается отдельной
+  // переменной, а не читается через thumb.offsetLeft, т.к. позиция теперь
+  // двигается через transform (не через left) и offsetLeft её не отражает.
+  let currentLeft = 0;
 
   function metrics() {
     maxLeft = Math.max(0, root.clientWidth - thumb.offsetWidth - PAD * 2);
   }
 
   function setPosition(left) {
-    thumb.style.left = `${left + PAD}px`;
+    currentLeft = left;
+    // transform вместо left — не заставляет браузер пересчитывать вёрстку
+    // на каждое движение пальца, только перерисовку слоя. На слабых
+    // телефонах left/width заметно лагали при протягивании.
+    thumb.style.transform = `translateX(${left}px)`;
     fill.style.width = `${left + thumb.offsetWidth + PAD}px`;
   }
 
@@ -60,7 +68,7 @@ function initHeroSwipe() {
     dragging = true;
     moved = 0;
     startX = event.clientX;
-    startLeft = thumb.offsetLeft - PAD;
+    startLeft = currentLeft;
     thumb.classList.add("is-dragging");
     thumb.setPointerCapture(event.pointerId);
   });
@@ -80,8 +88,7 @@ function initHeroSwipe() {
     thumb.classList.remove("is-dragging");
     suppressNextClick = true;
     window.setTimeout(() => { suppressNextClick = false; }, 0);
-    const left = thumb.offsetLeft - PAD;
-    if (moved < 6 || left >= maxLeft * 0.82) {
+    if (moved < 6 || currentLeft >= maxLeft * 0.82) {
       complete();
     } else {
       reset();
