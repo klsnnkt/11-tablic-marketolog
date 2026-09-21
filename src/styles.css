@@ -512,9 +512,16 @@ textarea { min-height: 120px; resize: vertical; }
 .step-marker .cell-tag { position: relative; background: var(--surface); }
 .step-text { margin: 0; padding-top: 3px; line-height: 1.5; }
 
-.legal-footer { padding: 4px 4px 32px; }
-.legal-footer p { margin: 0 0 4px; font-size: 13px; line-height: 1.5; color: var(--muted); }
-.legal-footer p:last-child { margin-bottom: 0; }
+/* Подвал (добавлен контакт 2026-09-21): реквизиты слева, Telegram-контакт
+   справа — гибкая строка с переносом (тот же приём, что .actions/.cell-tag-row),
+   на узких экранах сама переносится в стек без отдельного брейкпоинта. */
+.legal-footer { padding: 4px 4px 32px; display: flex; flex-wrap: wrap; gap: 20px 24px; justify-content: space-between; }
+.legal-footer-info { flex: 1 1 200px; min-width: 0; }
+.legal-footer-info p { margin: 0 0 4px; font-size: 13px; line-height: 1.5; color: var(--muted); }
+.legal-footer-info p:last-child { margin-bottom: 0; }
+.legal-footer-contact { flex: 1 1 220px; min-width: 0; display: flex; flex-direction: column; align-items: flex-start; gap: 10px; }
+.legal-footer-contact-text { margin: 0; font-size: 13px; line-height: 1.5; color: var(--muted); }
+.tg-button { flex: none; }
 
 .style-row { display: grid; grid-template-columns: 170px 1fr; gap: 24px; padding: 24px 0; border-bottom: 1px solid var(--line); }
 .swatches { display: flex; flex-wrap: wrap; gap: 12px; }

@@ -85,4 +85,10 @@ export const project = {
     ogrnip: "ОГРНИП: 326547600121061",
     paymentMethod: "Способ оплаты МИР",
   },
+
+  contact: {
+    text: "Если есть вопросы или сложности с оплатой — пишите мне в телеграм!",
+    label: "Написать в ТГ",
+    url: "https://t.me/klsnnkt",
+  },
 };

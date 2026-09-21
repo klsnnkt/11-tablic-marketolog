@@ -117,7 +117,7 @@ function initHeroSwipe() {
 }
 
 async function renderHome() {
-  const { hero, whatsInside, about, benefit, howItWorks, final: finalBlock, closingCta, closingCat, legal } = project;
+  const { hero, whatsInside, about, benefit, howItWorks, final: finalBlock, closingCta, closingCat, legal, contact } = project;
   const visibleTables = whatsInside.tables.slice(0, whatsInside.visibleCount);
   const hiddenTables = whatsInside.tables.slice(whatsInside.visibleCount);
 
@@ -314,10 +314,22 @@ async function renderHome() {
       <section class="lander-section">
         <div class="lander">
           <div class="legal-footer">
-            <p>${escapeHtml(legal.entity)}</p>
-            <p>${escapeHtml(legal.inn)}</p>
-            <p>${escapeHtml(legal.ogrnip)}</p>
-            <p>${escapeHtml(legal.paymentMethod)}</p>
+            <div class="legal-footer-info">
+              <p>${escapeHtml(legal.entity)}</p>
+              <p>${escapeHtml(legal.inn)}</p>
+              <p>${escapeHtml(legal.ogrnip)}</p>
+              <p>${escapeHtml(legal.paymentMethod)}</p>
+            </div>
+            <div class="legal-footer-contact">
+              <p class="legal-footer-contact-text">${escapeHtml(contact.text)}</p>
+              <a class="button button--secondary tg-button" href="${escapeHtml(contact.url)}" target="_blank" rel="noopener noreferrer">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <line x1="22" y1="2" x2="11" y2="13"></line>
+                  <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                </svg>
+                ${escapeHtml(contact.label)}
+              </a>
+            </div>
           </div>
         </div>
       </section>
