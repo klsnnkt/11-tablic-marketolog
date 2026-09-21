@@ -252,7 +252,7 @@ async function renderHome() {
           <div class="block block-body block--glow">
             <p class="cell-tag-row"><span class="cell-tag">E1</span><span class="cell-tag-caption">механика доступа</span></p>
             <h2>${escapeHtml(howItWorks.title)}</h2>
-            <p class="lead">${escapeHtml(howItWorks.text)}</p>
+            <p class="lead">${howItWorks.textHtml}</p>
           </div>
         </div>
       </section>
