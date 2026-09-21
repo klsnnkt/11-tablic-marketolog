@@ -51,6 +51,8 @@ export const project = {
 
   howItWorks: {
     title: "Как это устроено",
+    video: "./public/videos/how-it-works.mp4",
+    videoPoster: "./public/images/how-it-works-poster.webp",
     textHtml: "Все таблички удобно <strong>лежат в закрытом Telegram-канале</strong>, к которому ты получишь доступ после оплаты. Каждую табличку ты копируешь себе и берёшь в работу хоть с сегодняшнего дня. Но даже если что-то не получится — <strong>доступ к каналу у тебя будет навсегда, поэтому всегда сможешь вернуться.</strong>",
   },
 

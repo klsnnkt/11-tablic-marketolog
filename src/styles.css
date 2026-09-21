@@ -208,6 +208,33 @@ h3 { font-size: 20px; margin-bottom: 10px; }
   text-overflow: ellipsis;
 }
 
+/* Видео в блоке «Как это устроено» (добавлено 2026-09-21) — окно с цветными
+   «трафик-лайт» кружками в углу (по образцу системных окон macOS/приложений),
+   по явной просьбе пользователя. В отличие от .hero-chrome (нейтральные точки,
+   разово только в hero) — здесь кружки цветные, второе использование приёма
+   «окна» в проекте, сознательно. Видео не грузится, пока не нажали play —
+   preload="none" на нативном <video>, только постер (webp) весит на странице. */
+.video-frame {
+  margin: 4px 0 20px;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: var(--surface-soft);
+}
+.video-frame-chrome {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 14px;
+  background: var(--surface-soft);
+  border-bottom: 1px solid var(--line);
+}
+.video-frame-dot { width: 8px; height: 8px; border-radius: 50%; display: block; }
+.video-frame-dot--red { background: var(--danger); }
+.video-frame-dot--yellow { background: var(--warning); }
+.video-frame-dot--green { background: var(--accent); }
+.video-frame-media { display: block; width: 100%; aspect-ratio: 720 / 630; object-fit: cover; background: #000; }
+
 .swipe-cta {
   position: relative;
   width: 100%;

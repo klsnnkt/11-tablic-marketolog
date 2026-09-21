@@ -252,6 +252,16 @@ async function renderHome() {
           <div class="block block-body block--glow">
             <p class="cell-tag-row"><span class="cell-tag">E1</span><span class="cell-tag-caption">механика доступа</span></p>
             <h2>${escapeHtml(howItWorks.title)}</h2>
+            <div class="video-frame">
+              <div class="video-frame-chrome">
+                <span class="video-frame-dot video-frame-dot--red"></span>
+                <span class="video-frame-dot video-frame-dot--yellow"></span>
+                <span class="video-frame-dot video-frame-dot--green"></span>
+              </div>
+              <video class="video-frame-media" controls controlsList="nodownload" preload="none" poster="${escapeHtml(howItWorks.videoPoster)}" playsinline>
+                <source src="${escapeHtml(howItWorks.video)}" type="video/mp4">
+              </video>
+            </div>
             <p class="lead">${howItWorks.textHtml}</p>
           </div>
         </div>
